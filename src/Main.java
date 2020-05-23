@@ -14,13 +14,14 @@ public class Main {
         unsortedList.add(3);
         unsortedList.add(7);
         unsortedList.add(16);
-
+        System.out.println("############################### EXAMPLE ###############################");
         sortList(unsortedList);
+        System.out.println("############################### EXAMPLE ###############################");
 
         unsortedList.clear();
         boolean doNeedAnotherValue = true;
 
-        System.out.println("enter number for a new list to sort and write 'end'5 when you want to end user input");
+        System.out.println("enter number for a new list to sort and write 'end' when you want to end user input");
         while (doNeedAnotherValue){
 
             Scanner sc= new Scanner(System.in);
@@ -32,7 +33,6 @@ public class Main {
             else {
 
                 int number = sc.nextInt();
-                System.out.println("the input is "+number);
                 unsortedList.add(number);
                 System.out.println("type end if you don't want to add more in the list");
             }
@@ -49,23 +49,26 @@ public class Main {
     public static void sortList(List<Integer> unsortedList){
 
         System.out.println("unsorted List "+unsortedList);
-        BinarySearchTree evenTree = new BinarySearchTree();
-        BinarySearchTree oddTree = new BinarySearchTree();
+
+        List<Integer> evenList = new ArrayList<>();
+        List<Integer> oddList = new ArrayList<>();
         List<Integer> sortedList = new ArrayList();
 
 
         for (Integer number : unsortedList){
 
             if(isNumberIsEven(number)){
-                evenTree.insert(number);
+                evenList.add(number);
                 continue;
             }
 
-            oddTree.insert(number);
+            oddList.add(number);
         }
 
-        sortedList.addAll(oddTree.getList());
-        sortedList.addAll(evenTree.getList());
+        Collections.sort(oddList);
+        Collections.sort(evenList);
+        sortedList.addAll(oddList);
+        sortedList.addAll(evenList);
 
         System.out.println("sorted list "+sortedList);
     }
