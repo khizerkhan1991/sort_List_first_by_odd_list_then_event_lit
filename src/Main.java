@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -7,18 +8,19 @@ public class Main {
 
     public static void main(String[] args) {
 
-        List<Integer> unsortedList = new ArrayList();
-        unsortedList.add(1);
-        unsortedList.add(2);
-        unsortedList.add(4);
-        unsortedList.add(3);
-        unsortedList.add(7);
-        unsortedList.add(16);
+        LinkedList<Integer>  unsortedLinkList = new LinkedList<>();
+
+        unsortedLinkList.add(1);
+        unsortedLinkList.add(2);
+        unsortedLinkList.add(4);
+        unsortedLinkList.add(3);
+        unsortedLinkList.add(7);
+        unsortedLinkList.add(16);
         System.out.println("############################### EXAMPLE ###############################");
-        sortList(unsortedList);
+        sortList(unsortedLinkList);
         System.out.println("############################### EXAMPLE ###############################");
 
-        unsortedList.clear();
+        unsortedLinkList.clear();
         boolean doNeedAnotherValue = true;
 
         System.out.println("enter number for a new list to sort and write 'end' when you want to end user input");
@@ -33,12 +35,12 @@ public class Main {
             else {
 
                 int number = sc.nextInt();
-                unsortedList.add(number);
+                unsortedLinkList.add(number);
                 System.out.println("type end if you don't want to add more in the list");
             }
         }
 
-        sortList(unsortedList);
+        sortList(unsortedLinkList);
     }
 
     private static boolean isNumberIsEven(Integer number){
@@ -46,30 +48,26 @@ public class Main {
         return (number % 2 == 0) ? Boolean.TRUE : Boolean.FALSE;
     }
 
-    public static void sortList(List<Integer> unsortedList){
+    public static void sortList(LinkedList<Integer> list){
 
-        System.out.println("unsorted List "+unsortedList);
-
-        List<Integer> evenList = new ArrayList<>();
-        List<Integer> oddList = new ArrayList<>();
-        List<Integer> sortedList = new ArrayList();
+        System.out.println("unsorted List "+list);
 
 
-        for (Integer number : unsortedList){
+        LinkedList<Integer>  evenList = new LinkedList<>();
+        LinkedList<Integer>  oddList = new LinkedList<>();
+
+        for (Integer number : list){
 
             if(isNumberIsEven(number)){
                 evenList.add(number);
+
                 continue;
             }
 
             oddList.add(number);
         }
 
-        Collections.sort(oddList);
-        Collections.sort(evenList);
-        sortedList.addAll(oddList);
-        sortedList.addAll(evenList);
-
-        System.out.println("sorted list "+sortedList);
+        oddList.addAll(evenList);
+        System.out.println("sorted list "+oddList);
     }
 }
